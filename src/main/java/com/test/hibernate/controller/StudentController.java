@@ -4,6 +4,7 @@ import com.test.hibernate.model.Student;
 import com.test.hibernate.service.StudentService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,32 +26,52 @@ public final class StudentController {
   @PostMapping("/")
   ResponseEntity<Long> save(@RequestBody final Student student) {
     Student response = studentService.save(student);
-    return new ResponseEntity<>(response.getId(), HttpStatus.CREATED);
+    if (response != null) {
+      return new ResponseEntity<>(response.getId(), HttpStatus.CREATED);
+    } else {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
   }
 
   @GetMapping("{id}")
   ResponseEntity<Student> get(@PathVariable final long id) {
     Student student = studentService.get(id);
-    return new ResponseEntity<>(student, HttpStatus.OK);
+    if (student != null) {
+      return new ResponseEntity<>(student, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
   }
 
   @GetMapping("/")
   ResponseEntity<List<Student>> list() {
     List<Student> students = studentService.list();
-    return new ResponseEntity<>(students, HttpStatus.OK);
+    if (students.size() > 1) {
+      return new ResponseEntity<>(students, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
   }
 
   @PutMapping("{id}")
   ResponseEntity<Void> update(@PathVariable final long id,
       @RequestBody final Student student) {
-    studentService.update(id, student);
-    return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    Student student1 = studentService.update(id, student);
+    if (student1 != null) {
+      return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    } else {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
   }
 
   @DeleteMapping("{id}")
   ResponseEntity<Void> delete(@PathVariable final long id) {
-    studentService.delete(id);
-    return new ResponseEntity<>(HttpStatus.OK);
+    try {
+      studentService.delete(id);
+      return new ResponseEntity<>(HttpStatus.OK);
+    } catch (EmptyResultDataAccessException exception) {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
   }
 
 }

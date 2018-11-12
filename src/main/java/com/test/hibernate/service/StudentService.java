@@ -5,10 +5,9 @@ import com.test.hibernate.repository.StudentRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class StudentService {
+public final class StudentService {
 
   @Autowired
   private StudentRepository studentRepository;
@@ -18,7 +17,11 @@ public class StudentService {
   }
 
   public Student get(final long id) {
-    return studentRepository.getOne(id);
+    try {
+      return studentRepository.getOne(id);
+    } catch (Exception exception) {
+      return null;
+    }
   }
 
   public List<Student> list() {
@@ -27,12 +30,16 @@ public class StudentService {
   }
 
   public Student update(final long id, final Student student) {
-    Student oldStudent = studentRepository.getOne(id);
-    if (oldStudent != null) {
-      oldStudent.setAge(student.getAge());
-      oldStudent.setName(student.getName());
+    try {
+      Student oldStudent = studentRepository.getOne(id);
+      if (oldStudent != null) {
+        oldStudent.setAge(student.getAge());
+        oldStudent.setName(student.getName());
+      }
+      return studentRepository.save(oldStudent);
+    } catch (Exception exception) {
+      return null;
     }
-    return studentRepository.save(oldStudent);
   }
 
   public void delete(final long id) {

@@ -15,14 +15,14 @@ public final class Student {
   private String name;
   private int age;
 
-  public Student() {}
+  public Student() { }
 
-  public Student(String name, int age) {
+  public Student(final String name, final int age) {
     this.name = name;
     this.age = age;
   }
 
-  public Student(long id, String name, int age) {
+  public Student(final long id, final String name, final int age) {
     this.id = id;
     this.name = name;
     this.age = age;
