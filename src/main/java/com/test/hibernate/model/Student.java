@@ -1,19 +1,23 @@
 package com.test.hibernate.model;
 
+import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 @Entity
-@Table(name = "students")
 public final class Student {
 
   @Id
   @GeneratedValue
+  @Column(name = "student_id")
   private long id;
   private String name;
   private int age;
+  @OneToMany(mappedBy = "student")
+  private List<Subject> subjects;
 
   public Student() { }
 
@@ -51,4 +55,13 @@ public final class Student {
   public void setAge(final int age) {
     this.age = age;
   }
+
+  public List<Subject> getSubjects() {
+    return subjects;
+  }
+
+  public void setSubjects(final List<Subject> subjects) {
+    this.subjects = subjects;
+  }
+
 }

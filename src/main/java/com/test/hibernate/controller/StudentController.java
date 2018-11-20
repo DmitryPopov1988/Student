@@ -1,8 +1,11 @@
 package com.test.hibernate.controller;
 
 import com.test.hibernate.model.Student;
+import com.test.hibernate.model.Subject;
 import com.test.hibernate.service.StudentService;
+import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
@@ -23,18 +26,19 @@ public final class StudentController {
   @Autowired
   private StudentService studentService;
 
-  @PostMapping("/")
-  ResponseEntity<Long> save(@RequestBody final Student student) {
-    Student response = studentService.save(student);
-    if (response != null) {
-      return new ResponseEntity<>(response.getId(), HttpStatus.CREATED);
+  @GetMapping("/")
+  ResponseEntity<List<Student>> list() {
+    List<Student> students = studentService.list();
+    if (students.size() > 1) {
+      return new ResponseEntity<>(students, HttpStatus.OK);
     } else {
-      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
 
   @GetMapping("{id}")
-  ResponseEntity<Student> get(@PathVariable final long id) {
+  ResponseEntity<Student> get(@PathVariable final long id,
+      final HttpServletResponse response) {
     Student student = studentService.get(id);
     if (student != null) {
       return new ResponseEntity<>(student, HttpStatus.OK);
@@ -43,13 +47,16 @@ public final class StudentController {
     }
   }
 
-  @GetMapping("/")
-  ResponseEntity<List<Student>> list() {
-    List<Student> students = studentService.list();
-    if (students.size() > 1) {
-      return new ResponseEntity<>(students, HttpStatus.OK);
+  @PostMapping("/")
+  ResponseEntity<Long> save(@RequestBody final Student student) {
+    List<Subject> subjects = new ArrayList<Subject>();
+      subjects.add(new Subject("TEST"));
+      student.setSubjects(subjects);
+    Student response = studentService.save(student);
+    if (response != null) {
+      return new ResponseEntity<>(response.getId(), HttpStatus.CREATED);
     } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
   }
 
