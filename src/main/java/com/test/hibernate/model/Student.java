@@ -16,8 +16,8 @@ public final class Student {
   private long id;
   private String name;
   private int age;
-  @OneToMany(mappedBy = "student")
-  private List<Subject> subjects;
+//  @OneToMany(mappedBy = "student")
+//  private List<Subject> subjects;
 
   public Student() { }
 
@@ -56,12 +56,12 @@ public final class Student {
     this.age = age;
   }
 
-  public List<Subject> getSubjects() {
-    return subjects;
-  }
-
-  public void setSubjects(final List<Subject> subjects) {
-    this.subjects = subjects;
-  }
+//  public List<Subject> getSubjects() {
+//    return subjects;
+//  }
+//
+//  public void setSubjects(final List<Subject> subjects) {
+//    this.subjects = subjects;
+//  }
 
 }

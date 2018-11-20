@@ -2,6 +2,7 @@ package com.test.hibernate.controller;
 
 import com.test.hibernate.model.Student;
 import com.test.hibernate.model.Subject;
+import com.test.hibernate.repository.StudentDaoImpl;
 import com.test.hibernate.service.StudentService;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public final class StudentController {
 
   @GetMapping("/")
   ResponseEntity<List<Student>> list() {
-    List<Student> students = studentService.list();
+    List<Student> students = studentService.getAll();
     if (students.size() > 1) {
       return new ResponseEntity<>(students, HttpStatus.OK);
     } else {
@@ -36,49 +37,49 @@ public final class StudentController {
     }
   }
 
-  @GetMapping("{id}")
-  ResponseEntity<Student> get(@PathVariable final long id,
-      final HttpServletResponse response) {
-    Student student = studentService.get(id);
-    if (student != null) {
-      return new ResponseEntity<>(student, HttpStatus.OK);
-    } else {
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-  }
-
-  @PostMapping("/")
-  ResponseEntity<Long> save(@RequestBody final Student student) {
-    List<Subject> subjects = new ArrayList<Subject>();
-      subjects.add(new Subject("TEST"));
-      student.setSubjects(subjects);
-    Student response = studentService.save(student);
-    if (response != null) {
-      return new ResponseEntity<>(response.getId(), HttpStatus.CREATED);
-    } else {
-      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-  }
-
-  @PutMapping("{id}")
-  ResponseEntity<Void> update(@PathVariable final long id,
-      @RequestBody final Student student) {
-    Student student1 = studentService.update(id, student);
-    if (student1 != null) {
-      return new ResponseEntity<>(HttpStatus.ACCEPTED);
-    } else {
-      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-  }
-
-  @DeleteMapping("{id}")
-  ResponseEntity<Void> delete(@PathVariable final long id) {
-    try {
-      studentService.delete(id);
-      return new ResponseEntity<>(HttpStatus.OK);
-    } catch (EmptyResultDataAccessException exception) {
-      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    }
-  }
+//  @GetMapping("{id}")
+//  ResponseEntity<Student> get(@PathVariable final long id,
+//      final HttpServletResponse response) {
+//    Student student = studentDaoImpl.get(id);
+//    if (student != null) {
+//      return new ResponseEntity<>(student, HttpStatus.OK);
+//    } else {
+//      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//    }
+//  }
+//
+//  @PostMapping("/")
+//  ResponseEntity<Long> save(@RequestBody final Student student) {
+//    List<Subject> subjects = new ArrayList<Subject>();
+//      subjects.add(new Subject("TEST"));
+//      student.setSubjects(subjects);
+//    Student response = studentDaoImpl.save(student);
+//    if (response != null) {
+//      return new ResponseEntity<>(response.getId(), HttpStatus.CREATED);
+//    } else {
+//      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//    }
+//  }
+//
+//  @PutMapping("{id}")
+//  ResponseEntity<Void> update(@PathVariable final long id,
+//      @RequestBody final Student student) {
+//    Student student1 = studentDaoImpl.update(id, student);
+//    if (student1 != null) {
+//      return new ResponseEntity<>(HttpStatus.ACCEPTED);
+//    } else {
+//      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//    }
+//  }
+//
+//  @DeleteMapping("{id}")
+//  ResponseEntity<Void> delete(@PathVariable final long id) {
+//    try {
+//      studentDaoImpl.delete(id);
+//      return new ResponseEntity<>(HttpStatus.OK);
+//    } catch (EmptyResultDataAccessException exception) {
+//      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//    }
+//  }
 
 }

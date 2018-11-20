@@ -1,9 +1,9 @@
-package com.test.hibernate.service;
+package com.test.hibernate.repository;
 
 import com.test.hibernate.model.Student;
 import java.util.List;
 
-public interface StudentService {
+public interface StudentDao {
 
   List<Student> getAll();
   Student getById(long id);
