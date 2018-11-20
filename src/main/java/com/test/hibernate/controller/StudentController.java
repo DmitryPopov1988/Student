@@ -1,14 +1,10 @@
 package com.test.hibernate.controller;
 
 import com.test.hibernate.model.Student;
-import com.test.hibernate.model.Subject;
-import com.test.hibernate.repository.StudentDaoImpl;
 import com.test.hibernate.service.StudentService;
-import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/students/")
 public final class StudentController {
 
   @Autowired
@@ -37,49 +33,48 @@ public final class StudentController {
     }
   }
 
-//  @GetMapping("{id}")
-//  ResponseEntity<Student> get(@PathVariable final long id,
-//      final HttpServletResponse response) {
-//    Student student = studentDaoImpl.get(id);
-//    if (student != null) {
-//      return new ResponseEntity<>(student, HttpStatus.OK);
-//    } else {
-//      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//    }
-//  }
-//
-//  @PostMapping("/")
-//  ResponseEntity<Long> save(@RequestBody final Student student) {
-//    List<Subject> subjects = new ArrayList<Subject>();
-//      subjects.add(new Subject("TEST"));
-//      student.setSubjects(subjects);
-//    Student response = studentDaoImpl.save(student);
-//    if (response != null) {
-//      return new ResponseEntity<>(response.getId(), HttpStatus.CREATED);
-//    } else {
-//      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//    }
-//  }
-//
-//  @PutMapping("{id}")
-//  ResponseEntity<Void> update(@PathVariable final long id,
-//      @RequestBody final Student student) {
-//    Student student1 = studentDaoImpl.update(id, student);
-//    if (student1 != null) {
-//      return new ResponseEntity<>(HttpStatus.ACCEPTED);
-//    } else {
-//      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//    }
-//  }
-//
-//  @DeleteMapping("{id}")
-//  ResponseEntity<Void> delete(@PathVariable final long id) {
-//    try {
-//      studentDaoImpl.delete(id);
-//      return new ResponseEntity<>(HttpStatus.OK);
-//    } catch (EmptyResultDataAccessException exception) {
-//      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//    }
-//  }
+  @GetMapping("{id}")
+  ResponseEntity<Student> get(@PathVariable final long id,
+      final HttpServletResponse response) {
+    Student student = studentService.getById(id);
+    if (student != null) {
+      return new ResponseEntity<>(student, HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
 
+  @PostMapping("/")
+  ResponseEntity<Long> save(@RequestBody final Student student) {
+    long response = studentService.createStudent(student);
+    if (response > 0) {
+      return new ResponseEntity<>(response, HttpStatus.CREATED);
+    } else {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @PutMapping("{id}")
+  ResponseEntity<Void> update(@PathVariable final long id,
+      @RequestBody final Student student) {
+    student.setId(id);
+    long response = studentService.updateStudent(student);
+    if (response > 0) {
+      return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    } else {
+      return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @DeleteMapping("{id}")
+  ResponseEntity<Void> delete(@PathVariable final long id) {
+    long response = studentService.deleteStudentById(id);
+    if (response > 0) {
+      return new ResponseEntity<>(HttpStatus.OK);
+    } else {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
 }
+
+

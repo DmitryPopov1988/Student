@@ -1,9 +1,9 @@
-package com.test.hibernate.repository;
+package com.test.hibernate.service;
 
 import com.test.hibernate.model.Subject;
 import java.util.List;
 
-public interface SubjectDao {
+public interface SubjectService {
 
   List<Subject> getAll();
   Subject getById(long id);

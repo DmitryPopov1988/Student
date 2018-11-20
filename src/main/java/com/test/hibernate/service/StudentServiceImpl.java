@@ -19,21 +19,21 @@ public class StudentServiceImpl implements StudentService {
 
   @Override
   public Student getById(long id) {
-    return null;
+    return studentDao.getById(id);
   }
 
   @Override
-  public long createStudent() {
-    return 0;
+  public long createStudent(final Student student) {
+    return studentDao.createStudent(student);
   }
 
   @Override
-  public long updateStudent(long id) {
-    return 0;
+  public long updateStudent(final Student student) {
+    return studentDao.updateStudent(student);
   }
 
   @Override
-  public long deleteStudentBuId() {
-    return 0;
+  public long deleteStudentById(final long id) {
+    return studentDao.deleteStudentById(id);
   }
 }

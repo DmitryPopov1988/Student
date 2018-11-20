@@ -7,8 +7,8 @@ public interface StudentDao {
 
   List<Student> getAll();
   Student getById(long id);
-  long createStudent();
-  long updateStudent(long id);
-  long deleteStudentBuId();
+  long createStudent(Student student);
+  long updateStudent(Student student);
+  long deleteStudentById(long id);
 
 }
