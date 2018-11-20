@@ -3,7 +3,6 @@ package com.test.hibernate.controller;
 import com.test.hibernate.model.Student;
 import com.test.hibernate.service.StudentService;
 import java.util.List;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,8 +33,7 @@ public final class StudentController {
   }
 
   @GetMapping("{id}")
-  ResponseEntity<Student> get(@PathVariable final long id,
-      final HttpServletResponse response) {
+  ResponseEntity<Student> get(@PathVariable final long id) {
     Student student = studentService.getById(id);
     if (student != null) {
       return new ResponseEntity<>(student, HttpStatus.OK);

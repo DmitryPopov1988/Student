@@ -18,7 +18,7 @@ public class StudentServiceImpl implements StudentService {
   }
 
   @Override
-  public Student getById(long id) {
+  public Student getById(final long id) {
     return studentDao.getById(id);
   }
 

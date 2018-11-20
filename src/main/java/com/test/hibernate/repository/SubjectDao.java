@@ -7,8 +7,8 @@ public interface SubjectDao {
 
   List<Subject> getAll();
   Subject getById(long id);
-  long createSubject();
-  long updateSubject(long id);
-  long deleteSubjectById();
+  long createSubject(Subject subject);
+  long updateSubject(Subject subject);
+  long deleteSubjectById(long id);
 
 }

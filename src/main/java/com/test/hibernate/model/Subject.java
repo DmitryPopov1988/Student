@@ -1,23 +1,26 @@
 package com.test.hibernate.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public final class Subject {
+public final class Subject implements Serializable {
 
   @Id
   @GeneratedValue
   private long id;
   @Column(name = "name_subject")
   private String nameSubject;
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "student_id")
+  @JsonIgnore
   private Student student;
 
   public Subject() { }

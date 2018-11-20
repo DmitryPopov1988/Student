@@ -23,22 +23,46 @@ public class SubjectDaoImpl implements SubjectDao {
   }
 
   @Override
-  public Subject getById(long id) {
-    return null;
+  public Subject getById(final long id) {
+    Session session = sessionFactory.getCurrentSession();
+    session.beginTransaction();
+    Subject subject = session.get(Subject.class, id);
+    session.getTransaction().commit();
+    return subject;
   }
 
   @Override
-  public long createSubject() {
-    return 0;
+  public long createSubject(final Subject subject) {
+    Session session = sessionFactory.getCurrentSession();
+    session.beginTransaction();
+    session.save(subject);
+    session.getTransaction().commit();
+    return subject.getId();
   }
 
   @Override
-  public long updateSubject(long id) {
-    return 0;
+  public long updateSubject(final Subject subject) {
+    try {
+      Session session = sessionFactory.getCurrentSession();
+      session.beginTransaction();
+      session.saveOrUpdate(subject);
+      session.getTransaction().commit();
+      return subject.getId();
+    } catch (Throwable exc) {
+      return 0;
+    }
   }
 
   @Override
-  public long deleteSubjectById() {
-    return 0;
+  public long deleteSubjectById(final long id) {
+    Session session = sessionFactory.getCurrentSession();
+    session.beginTransaction();
+    Subject subject = session.get(Subject.class, id);
+    if (subject == null) {
+      return 0;
+    }
+    session.delete(subject);
+    session.getTransaction().commit();
+    return subject.getId();
   }
 }

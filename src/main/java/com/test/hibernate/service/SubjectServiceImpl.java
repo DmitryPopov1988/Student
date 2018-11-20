@@ -18,23 +18,23 @@ public class SubjectServiceImpl implements SubjectService {
   }
 
   @Override
-  public Subject getById(long id) {
-    return null;
+  public Subject getById(final long id) {
+    return subjectDao.getById(id);
   }
 
   @Override
-  public long createSubject() {
-    return 0;
+  public long createSubject(final Subject subject) {
+    return subjectDao.createSubject(subject);
   }
 
   @Override
-  public long updateSubject(long id) {
-    return 0;
+  public long updateSubject(final Subject subject) {
+    return subjectDao.updateSubject(subject);
   }
 
   @Override
-  public long deleteSubjectById() {
-    return 0;
+  public long deleteSubjectById(final long id) {
+    return subjectDao.deleteSubjectById(id);
   }
 
 }

@@ -1,14 +1,16 @@
 package com.test.hibernate.model;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
-public final class Student {
+public final class Student implements Serializable {
 
   @Id
   @GeneratedValue
@@ -16,8 +18,8 @@ public final class Student {
   private long id;
   private String name;
   private int age;
-//  @OneToMany(mappedBy = "student")
-//  private List<Subject> subjects;
+  @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+  private List<Subject> subjects;
 
   public Student() { }
 
@@ -56,12 +58,12 @@ public final class Student {
     this.age = age;
   }
 
-//  public List<Subject> getSubjects() {
-//    return subjects;
-//  }
-//
-//  public void setSubjects(final List<Subject> subjects) {
-//    this.subjects = subjects;
-//  }
+  public List<Subject> getSubjects() {
+    return subjects;
+  }
+
+  public void setSubjects(final List<Subject> subjects) {
+    this.subjects = subjects;
+  }
 
 }
