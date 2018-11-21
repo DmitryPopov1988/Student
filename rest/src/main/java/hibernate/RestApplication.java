@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RestApplication {
 
   @GetMapping("/user/me")
-  public Principal getPrincipal(Principal principal) {
+  public Principal getPrincipal(final Principal principal) {
     return principal;
   }
 

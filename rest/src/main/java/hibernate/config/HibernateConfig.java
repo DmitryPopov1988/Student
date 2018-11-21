@@ -3,12 +3,9 @@ package hibernate.config;
 import hibernate.model.Student;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -41,11 +38,14 @@ public class HibernateConfig {
     return transactionManager;
   }
 
-  @Primary
-  @Bean(name = "dataSource")
-  @ConfigurationProperties(prefix = "spring.datasource")
+  @Bean
   public static DataSource getDataSource() {
-    return DataSourceBuilder.create().build();
+    SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
+    dataSource.setDriverClass(org.h2.Driver.class);
+    dataSource.setUrl("jdbc:h2:~/test");
+    dataSource.setUsername("sa");
+    dataSource.setPassword("");
+    return dataSource;
   }
 
 }

@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth
 public class OAuth2Config extends WebSecurityConfigurerAdapter {
 
   @Override
-  protected void configure(HttpSecurity http) throws Exception {
+  protected void configure(final HttpSecurity http) throws Exception {
     http
         .antMatcher("/**")
         .authorizeRequests()

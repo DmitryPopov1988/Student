@@ -35,6 +35,8 @@
 
     <mapping class="hibernate.model.Subject"/>
 
+    <mapping class="hibernate.model.User"/>
+
   </session-factory>
 
 </hibernate-configuration>

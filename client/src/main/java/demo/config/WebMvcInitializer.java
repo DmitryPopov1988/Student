@@ -15,12 +15,12 @@ public final class WebMvcInitializer extends
 
   @Override
   protected Class<?>[] getServletConfigClasses() {
-    return new Class<?>[] { MvcAppWebConfig.class };
+    return new Class<?>[] {MvcAppWebConfig.class};
   }
 
   @Override
   protected String[] getServletMappings() {
-    return new String[] { "/*" };
+    return new String[] {"/*"};
   }
 
   @Override
