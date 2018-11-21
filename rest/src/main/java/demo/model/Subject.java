@@ -1,4 +1,4 @@
-package hibernate.model;
+package demo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;

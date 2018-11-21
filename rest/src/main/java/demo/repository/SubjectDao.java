@@ -1,9 +1,9 @@
-package hibernate.service;
+package demo.repository;
 
-import hibernate.model.Subject;
+import demo.model.Subject;
 import java.util.List;
 
-public interface SubjectService {
+public interface SubjectDao {
 
   List<Subject> getAll();
   Subject getById(long id);

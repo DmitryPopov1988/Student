@@ -5,37 +5,37 @@
 <hibernate-configuration>
   <session-factory>
 
-    <property name="hibernate.connection.driver_class">org.h2.Driver</property>
+    <property name="demo.connection.driver_class">org.h2.Driver</property>
 
-    <property name="hibernate.connection.password"></property>
+    <property name="demo.connection.password"></property>
 
-    <property name="hibernate.connection.url">jdbc:h2:~/test</property>
+    <property name="demo.connection.url">jdbc:h2:~/test</property>
 
-    <property name="hibernate.connection.username">sa</property>
+    <property name="demo.connection.username">sa</property>
 
-    <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
+    <property name="demo.dialect">org.demo.dialect.H2Dialect</property>
 
-    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="demo.hbm2ddl.auto">update</property>
 
-    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="demo.current_session_context_class">thread</property>
 
-    <property name="hibernate.show_sql">true</property>
+    <property name="demo.show_sql">true</property>
 
-    <property name="hibernate.c3p0.min_size">5</property>
+    <property name="demo.c3p0.min_size">5</property>
 
-    <property name="hibernate.c3p0.max_size">20</property>
+    <property name="demo.c3p0.max_size">20</property>
 
-    <property name="hibernate.c3p0.acquire_increment">2</property>
+    <property name="demo.c3p0.acquire_increment">2</property>
 
-    <property name="hibernate.c3p0.acquire_increment">1800</property>
+    <property name="demo.c3p0.acquire_increment">1800</property>
 
-    <property name="hibernate.c3p0.max_statements">150</property>
+    <property name="demo.c3p0.max_statements">150</property>
 
-    <mapping class="hibernate.model.Student"/>
+    <mapping class="demo.model.Student"/>
 
-    <mapping class="hibernate.model.Subject"/>
+    <mapping class="demo.model.Subject"/>
 
-    <mapping class="hibernate.model.User"/>
+    <mapping class="demo.model.User"/>
 
   </session-factory>
 

@@ -1,6 +1,6 @@
-package hibernate.repository;
+package demo.repository;
 
-import hibernate.model.User;
+import demo.model.User;
 
 public interface UserDao {
 

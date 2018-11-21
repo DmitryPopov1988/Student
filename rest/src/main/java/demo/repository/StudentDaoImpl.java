@@ -1,6 +1,6 @@
-package hibernate.repository;
+package demo.repository;
 
-import hibernate.model.Student;
+import demo.model.Student;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

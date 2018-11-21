@@ -1,8 +1,5 @@
 package demo.config;
 
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public final class WebMvcInitializer extends
@@ -10,7 +7,7 @@ public final class WebMvcInitializer extends
 
   @Override
   protected Class<?>[] getRootConfigClasses() {
-    return null;
+    return new Class<?>[] {SecurityConfig.class};
   }
 
   @Override
@@ -21,18 +18,6 @@ public final class WebMvcInitializer extends
   @Override
   protected String[] getServletMappings() {
     return new String[] {"/*"};
-  }
-
-  @Override
-  public void onStartup(final ServletContext servletContext)
-      throws ServletException {
-    registerHiddenFieldFilter(servletContext);
-  }
-
-  private void registerHiddenFieldFilter(final ServletContext aContext) {
-    aContext.addFilter("hiddenHttpMethodFilter",
-        new HiddenHttpMethodFilter())
-        .addMappingForUrlPatterns(null, true, "/*");
   }
 
 }

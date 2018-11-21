@@ -1,7 +1,7 @@
-package hibernate.service;
+package demo.service;
 
-import hibernate.model.Student;
-import hibernate.repository.StudentDao;
+import demo.model.Student;
+import demo.repository.StudentDao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

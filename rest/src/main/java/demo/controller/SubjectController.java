@@ -1,7 +1,7 @@
-package hibernate.controller;
+package demo.controller;
 
-import hibernate.model.Subject;
-import hibernate.service.SubjectService;
+import demo.model.Subject;
+import demo.service.SubjectService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

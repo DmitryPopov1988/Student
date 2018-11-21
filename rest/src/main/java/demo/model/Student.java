@@ -1,4 +1,4 @@
-package hibernate.model;
+package demo.model;
 
 import java.util.List;
 import javax.persistence.Column;

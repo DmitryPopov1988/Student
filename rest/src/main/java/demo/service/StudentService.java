@@ -1,9 +1,9 @@
-package hibernate.repository;
+package demo.service;
 
-import hibernate.model.Student;
+import demo.model.Student;
 import java.util.List;
 
-public interface StudentDao {
+public interface StudentService {
 
   List<Student> getAll();
   Student getById(long id);

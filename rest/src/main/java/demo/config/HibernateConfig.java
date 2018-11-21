@@ -1,6 +1,6 @@
-package hibernate.config;
+package demo.config;
 
-import hibernate.model.Student;
+import demo.model.Student;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;

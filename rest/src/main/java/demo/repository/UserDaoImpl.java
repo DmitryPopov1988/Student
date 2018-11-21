@@ -1,6 +1,6 @@
-package hibernate.repository;
+package demo.repository;
 
-import hibernate.model.User;
+import demo.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
