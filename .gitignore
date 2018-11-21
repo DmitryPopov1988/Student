@@ -1,4 +1,6 @@
 /target/
+client/target/
+rest/target/
 .mvn/wrapper/maven-wrapper.jar
 .mvn/
 /.mvn/
