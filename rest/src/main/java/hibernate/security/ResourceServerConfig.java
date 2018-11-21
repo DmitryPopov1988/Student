@@ -4,7 +4,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -20,49 +22,33 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 
 @Configuration
-@EnableResourceServer
+@Order(-20)
 public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 
-  @Autowired
-  private ClientDetailsService clientDetailsService;
-  @Autowired
-  private DataSource dataSource;
-
   @Override
-  protected void configure(final HttpSecurity http) throws Exception {
-    http
-        .csrf()
-        .disable()
-        .anonymous()
-        .disable()
+  protected void configure(HttpSecurity http) throws Exception { // @formatter:off
+    http.requestMatchers()
+        .antMatchers("/login", "/oauth/authorize")
+        .and()
         .authorizeRequests()
-        .antMatchers("/oauth/token")
+        .anyRequest()
+        .authenticated()
+        .and()
+        .formLogin()
         .permitAll();
   }
 
   @Override
-  @Bean
-  public AuthenticationManager authenticationManagerBean() throws Exception {
-    return super.authenticationManagerBean();
-  }
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception { // @formatter:off
+    auth.inMemoryAuthentication()
+        .withUser("john")
+        .password(passwordEncoder().encode("123"))
+        .roles("USER");
+  } // @formatter:on
 
-  @Override
-  protected void configure(final AuthenticationManagerBuilder auth)
-      throws Exception {
-    auth
-        .jdbcAuthentication()
-        .dataSource(dataSource)
-        .withUser("aa")
-        .password("aa")
-        .roles("ROLE_ADMIN")
-        .authorities("ROLE_ADMIN");
-//        .jdbcAuthentication()
-//        .dataSource(dataSource)
-//        .usersByUsernameQuery("SELECT username, password, "
-//            + "enabled FROM users WHERE username = ?")
-//        .authoritiesByUsernameQuery("select username, authority "
-//            + "from authorities where username=?")
-//        .passwordEncoder(new BCryptPasswordEncoder());
+  @Bean
+  public BCryptPasswordEncoder passwordEncoder(){
+    return new BCryptPasswordEncoder();
   }
 
 }

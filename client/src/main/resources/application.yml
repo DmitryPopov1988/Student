@@ -4,18 +4,18 @@ server:
     context-path: /
   session:
     cookie:
-      name: JSESSIONID
+      name: UI2SESSION
 security:
   basic:
     enabled: false
   oauth2:
     client:
-      clientId: my-trusted-client
+      clientId: SampleClientId
       clientSecret: secret
-      accessTokenUri: http://localhost:8090/popov/oauth/token
-      userAuthorizationUri: http://localhost:8090/popov/oauth/authorize
+      accessTokenUri: http://localhost:8090/auth/oauth/token
+      userAuthorizationUri: http://localhost:8090/auth/oauth/authorize
     resource:
-      userInfoUri: http://localhost:8090/popov/user/me
+      userInfoUri: http://localhost:8090/auth/user/me
 spring:
   thymeleaf:
     cache: false

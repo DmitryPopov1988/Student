@@ -20,41 +20,25 @@ public class AuthorizationServerConfig extends
     AuthorizationServerConfigurerAdapter {
 
   @Autowired
-  private TokenStore tokenStore;
-  @Autowired
-  private UserApprovalHandler userApprovalHandler;
-  @Autowired
-  @Qualifier("authenticationManagerBean")
-  private AuthenticationManager authenticationManager;
+  private BCryptPasswordEncoder passwordEncoder;
 
   @Override
-  public void configure(final ClientDetailsServiceConfigurer clients)
-      throws Exception {
-    BCryptPasswordEncoder encoder = passwordEncoder();
+  public void configure(final AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+    oauthServer.tokenKeyAccess("permitAll()")
+        .checkTokenAccess("isAuthenticated()");
+  }
+
+  @Override
+  public void configure(final ClientDetailsServiceConfigurer clients) throws Exception {
     clients
         .inMemory()
-        .withClient("my-trusted-client")
-        .authorizedGrantTypes("client_credentials", "password", "refresh_token")
-        .authorities("ROLE_ADMIN", "ROLE_USER")
-        .scopes("read-write")
-        .secret("secret");
+        .withClient("SampleClientId")
+        .secret(passwordEncoder.encode("secret"))
+        .authorizedGrantTypes("authorization_code")
+        .scopes("user_info")
+        .autoApprove(true)
+        .redirectUris("http://localhost:8088/login")
+        .accessTokenValiditySeconds(3600);
   }
 
-  @Override
-  public void configure(final AuthorizationServerEndpointsConfigurer endpoints)
-      throws Exception {
-    endpoints
-        .authenticationManager(authenticationManager);
-  }
-
-  @Override
-  public void configure(final AuthorizationServerSecurityConfigurer oauthServer)
-      throws Exception {
-    oauthServer.realm("/**");
-  }
-
-  @Bean
-  public BCryptPasswordEncoder passwordEncoder() {
-    return new BCryptPasswordEncoder();
-  }
 }
