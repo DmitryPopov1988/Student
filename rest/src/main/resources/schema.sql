@@ -7,10 +7,7 @@ CREATE TABLE IF NOT EXISTS users (
   id BIGINT not null PRIMARY KEY,
 	username varchar(500) not null,
 	password varchar(500) not null,
+	authority varchar(500) not null,
 	enabled boolean not null
 );
 
-CREATE TABLE IF NOT EXISTS authorities (
-	username varchar(500) not null,
-	authority varchar(500) not null
-);

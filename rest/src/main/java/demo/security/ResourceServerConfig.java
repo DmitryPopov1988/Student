@@ -1,5 +1,6 @@
 package demo.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -13,6 +14,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
 
   public static final int MINUS_TWENTY = -20;
+
+  @Autowired
+  private CustomUserDetails customUserDetails;
 
   @Override
   protected void configure(final HttpSecurity http) throws
@@ -32,10 +36,7 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
   protected void configure(final AuthenticationManagerBuilder auth)
       throws Exception {
     auth
-        .inMemoryAuthentication()
-        .withUser("john")
-        .password(passwordEncoder().encode("123"))
-        .roles("USER");
+        .userDetailsService(customUserDetails);
   }
 
   @Bean
