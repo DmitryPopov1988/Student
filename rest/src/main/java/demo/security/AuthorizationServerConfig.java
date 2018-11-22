@@ -32,6 +32,7 @@ public class AuthorizationServerConfig extends
         .secret(passwordEncoder.encode("secret"))
         .authorizedGrantTypes("refresh_token", "client_credentials",
             "authorization_code", "implicit")
+        .authorities("ROLE_ADMIN", "ROLE_USER")
         .scopes("read", "write")
         .autoApprove(true)
         .redirectUris("http://localhost:8088/login");

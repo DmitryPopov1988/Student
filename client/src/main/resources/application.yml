@@ -7,7 +7,7 @@ server:
       name: UI2SESSION
 security:
   basic:
-    enabled: false
+    enabled: true
   oauth2:
     client:
       clientId: SampleClientId
