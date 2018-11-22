@@ -39,6 +39,10 @@ public class MvcAppWebConfig implements
   public void addResourceHandlers(final ResourceHandlerRegistry registry) {
     registry.addResourceHandler("classpath:/resources/**")
         .addResourceLocations("/resources/");
+    registry.addResourceHandler("/images/**")
+        .addResourceLocations("file:resources/","file:images/","file:");
+    registry.addResourceHandler("/static/**")
+        .addResourceLocations("classpath:/static/");
   }
 
   @Bean
