@@ -7,22 +7,20 @@
 
 body {
   background-color: #000000;
+  height: 100%;
 }
 
 .down {
   margin-top: 50px;
 }
 
-.center {
-  position: center;
-}
-
 .footer {
- height: 30px;
- position: absolute;
- bottom: 0;
- margin-left: 400px;
-
+    position: fixed;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    color: white;
+    text-align: center;
 }
 
 .outer {
@@ -59,25 +57,20 @@ body {
 </head>
 <body>
 
-<div class="down">
 <div class="outer">
   <font color="#FFFFFF" size="+3">
     <h1>The Student</h1>
   </font>
   <img sizes="20%" th:src="@{/static/images/student (1).png}"/>
+</div>
 
-</div>
-</div>
 <div class="outer">
 <button class="orange-flat-button" type="submit" onClick="location.href='/main'">ENTER</button>
 </div>
 
 <div class="footer">
-  <div class="center">
-  <font color="#FFFFFF" size="+1">
-  <b>Copyright © 2018 &nbsp; &nbsp; Dmitry Popov &nbsp; &nbsp; All rights reserved ;) </b>
+  <font color="#FFFFFF">Copyright © 2018 &nbsp; &nbsp; Dmitry Popov &nbsp; &nbsp; All rights reserved 😎
   </font>
-  </div>
 </div>
 
 </body>
