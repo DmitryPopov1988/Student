@@ -9,6 +9,22 @@ body {
   background-color: #000000;
 }
 
+.down {
+  margin-top: 50px;
+}
+
+.center {
+  position: center;
+}
+
+.footer {
+ height: 30px;
+ position: absolute;
+ bottom: 0;
+ margin-left: 400px;
+
+}
+
 .outer {
   width:100%;
   text-align: center;
@@ -19,7 +35,7 @@ body {
   vertical-align: top;
   width: 16%;
   height: 60px;
-  margin: 50px;
+  margin: 30px;
   font-size: 30px;
   color: white;
   text-align: center;
@@ -43,16 +59,25 @@ body {
 </head>
 <body>
 
+<div class="down">
 <div class="outer">
   <font color="#FFFFFF" size="+3">
     <h1>The Student</h1>
-
-
-  <img sizes="20%" th:src="@{/static/images/student (1).png}"/>
   </font>
+  <img sizes="20%" th:src="@{/static/images/student (1).png}"/>
+
+</div>
 </div>
 <div class="outer">
 <button class="orange-flat-button" type="submit" onClick="location.href='/main'">ENTER</button>
+</div>
+
+<div class="footer">
+  <div class="center">
+  <font color="#FFFFFF" size="+1">
+  <b>Copyright © 2018 &nbsp; &nbsp; Dmitry Popov &nbsp; &nbsp; All rights reserved ;) </b>
+  </font>
+  </div>
 </div>
 
 </body>
