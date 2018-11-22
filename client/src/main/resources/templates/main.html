@@ -6,143 +6,23 @@
   <title>Welcome back</title>
   <style>
 
-#outer {
+  body {
+    background-color: #000000;
+}
+
+.outer {
   width:100%;
   text-align: center;
-}
-
-.main {
-  width:100%;
-  padding-left: 170px;
-}
-
-.pic {
-  padding-left: 100px;
-}
-
-.container {
-  display: inline-block;
-  width:100%;
-  text-align: center;
-  padding-left: 250px;
-}
-
-.users {
-	position: relative;
-	padding: 10px 48px;
-  margin: 0px 10px 10px 0px;
-  float: left;
-	border-radius: 10px;
-	font-family: 'Pacifico', cursive;
-	font-size: 25px;
-	color: #FFF;
-	text-decoration: none;
-	transition: all 0.1s;
-	-webkit-transition: all 0.1s;
-	background-color: #3498DB;
-	border-bottom: 5px solid #2980B9;
-	text-shadow: 0px -2px #2980B9;
-}
-
-.users:active {
-	transform: translate(0px,5px);
-  -webkit-transform: translate(0px,5px);
-	border-bottom: 1px solid;
-}
-
-.products {
-	position: relative;
-	padding: 10px 38px;
-  margin: 0px 10px 10px 0px;
-  float: left;
-	border-radius: 10px;
-	font-family: 'Pacifico', cursive;
-	font-size: 25px;
-	color: #FFF;
-	text-decoration: none;
-	transition: all 0.1s;
-	-webkit-transition: all 0.1s;
-	background-color: #82BF56;
-	border-bottom: 5px solid #669644;
-	text-shadow: 0px -2px #669644;
-}
-
-.products:active {
-	transform: translate(0px,5px);
-  -webkit-transform: translate(0px,5px);
-	border-bottom: 1px solid;
-}
-
-.vendors {
-	position: relative;
-	padding: 10px 38px;
-  margin: 0px 10px 10px 0px;
-  float: left;
-	border-radius: 10px;
-	font-family: 'Pacifico', cursive;
-	font-size: 25px;
-	color: #FFF;
-	text-decoration: none;
-	transition: all 0.1s;
-	-webkit-transition: all 0.1s;
-  background-color: #F2CF66;
-	border-bottom: 5px solid #D1B358;
-	text-shadow: 0px -2px #D1B358;
-}
-
-.vendors:active {
-	transform: translate(0px,5px);
-  -webkit-transform: translate(0px,5px);
-	border-bottom: 1px solid;
-}
-
-.logout {
-	position: relative;
-	padding: 10px 40px;
-  margin: 0px 10px 10px 0px;
-  float: left;
-	border-radius: 10px;
-	font-family: 'Pacifico', cursive;
-	font-size: 25px;
-	color: #FFF;
-	text-decoration: none;
-	transition: all 0.1s;
-	-webkit-transition: all 0.1s;
-	background-color: #E74C3C;
-	border-bottom: 5px solid #BD3E31;
-	text-shadow: 0px -2px #BD3E31;
-}
-
-.logout:active {
-	transform: translate(0px,5px);
-  -webkit-transform: translate(0px,5px);
-	border-bottom: 1px solid;
 }
 
   </style>
 </head>
 <body>
-<div class="main">
-<h1>&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  &nbsp Hello again, <span th:text="*{principal}"></span> ☺ </h1>
+<div class="outer">
+  <font color="#FFFFFF" size="+3">
+<h1>Welcome back, <span th:text="*{principal}"></span> !</h1>
+    </font>
 </div>
-  <div class="outer">
-  <div class="container">
-  <button class="vendors" type="submit" onClick="location.href='/vendors'">Vendors</button>
 
-  <button class="products" type="submit" onClick="location.href='/products'">Products</button>
-
-  <button class="users" type="submit" onClick="location.href='/users'">Users</button>
-
-  <form th:method="POST" th:action="@{'/logout'}">
-    <button class="logout" type="submit">Logout</button>
-  </form>
-
-  </div>
-  </div>
-<br /> <br /> <br /> <br /> <br />
-<div class="pic">
-<img th:src="@{https://cdn0.iconfinder.com/data/icons/containers/512/self2.png}" />
-<img th:src="@{https://cdn0.iconfinder.com/data/icons/containers/512/fork5.png}" />
-</div>
 </body>
 </html>
