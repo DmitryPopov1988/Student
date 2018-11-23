@@ -24,5 +24,24 @@ body {
     </font>
 </div>
 
+
+<div>
+  <table cellpadding="1" border="1" width="30%">
+    <tr>
+      <th width="100%">ID</th>
+      <th width="100%">NAME</th>
+      <th width="100%">AGE</th>
+      <th width="100%">SUBJECTS</th>
+    </tr>
+    <tr th:each="student : ${students}">
+      <td th:utext="${student.id}">...</td>
+      <td th:utext="${student.name}">...</td>
+      <td th:utext="${student.age}">...</td>
+      <td th:utext="${student.subjects}">...</td>
+
+
+    </tr>
+  </table>
+</div>
 </body>
 </html>

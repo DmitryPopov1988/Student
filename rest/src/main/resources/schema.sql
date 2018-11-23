@@ -11,3 +11,17 @@ CREATE TABLE IF NOT EXISTS users (
 	enabled boolean not null
 );
 
+CREATE TABLE IF NOT EXISTS student (
+  student_id BIGINT not null PRIMARY KEY,
+	name varchar(500) not null,
+	age BIGINT not null
+);
+
+CREATE TABLE IF NOT EXISTS subject (
+  id BIGINT not null PRIMARY KEY,
+	name_subject varchar(500) not null,
+	student_id BIGINT
+);
+
+
+

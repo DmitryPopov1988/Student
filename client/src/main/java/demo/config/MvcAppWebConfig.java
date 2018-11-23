@@ -1,8 +1,15 @@
 package demo.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.security.oauth2.client.OAuth2ClientContext;
+import org.springframework.security.oauth2.client.OAuth2RestOperations;
+import org.springframework.security.oauth2.client.OAuth2RestTemplate;
+import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -14,6 +21,15 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableWebMvc
 public class MvcAppWebConfig implements
     WebMvcConfigurer {
+
+  @Autowired
+  private OAuth2ProtectedResourceDetails resource;
+
+  @Bean
+  @Primary
+  public OAuth2RestOperations restTemplate(OAuth2ClientContext clientContext) {
+    return new OAuth2RestTemplate(resource, clientContext);
+  }
 
   @Bean
   public static PropertySourcesPlaceholderConfigurer
