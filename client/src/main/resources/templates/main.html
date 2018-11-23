@@ -10,6 +10,22 @@ body {
     background-color: #000000;
 }
 
+th {
+background-color: #FFCA4F;
+color: black;
+}
+
+td {
+  font-size: 24px;
+  text-align:center;
+}
+
+table{
+  width:100%;
+  table-layout: fixed;
+  color: white;
+}
+
 .outer {
   width:100%;
   text-align: center;
@@ -26,12 +42,12 @@ body {
 
 
 <div>
-  <table cellpadding="1" border="1" width="30%">
+  <table cellpadding="1" border="6" width="30%">
     <tr>
-      <th width="100%">ID</th>
-      <th width="100%">NAME</th>
-      <th width="100%">AGE</th>
-      <th width="100%">SUBJECTS</th>
+      <th width="100%" ><font size="+3">ID</font></th>
+      <th width="100%"><font size="+3">NAME</font></th>
+      <th width="100%"><font size="+3">AGE</font></th>
+      <th width="100%"><font size="+3">SUBJECTS</font></th>
     </tr>
     <tr th:each="student : ${students}">
       <td th:utext="${student.id}">...</td>

@@ -9,7 +9,6 @@ import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextListener;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -27,7 +26,8 @@ public class MvcAppWebConfig implements
 
   @Bean
   @Primary
-  public OAuth2RestOperations restTemplate(OAuth2ClientContext clientContext) {
+  public OAuth2RestOperations restTemplate(final OAuth2ClientContext
+      clientContext) {
     return new OAuth2RestTemplate(resource, clientContext);
   }
 
