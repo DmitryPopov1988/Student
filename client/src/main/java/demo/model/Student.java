@@ -48,5 +48,4 @@ public class Student {
   public void setSubjects(final List<Object> subjects) {
     this.subjects = subjects;
   }
-
 }

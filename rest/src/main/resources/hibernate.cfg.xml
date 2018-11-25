@@ -15,7 +15,7 @@
 
     <property name="demo.dialect">org.demo.dialect.H2Dialect</property>
 
-    <property name="demo.hbm2ddl.auto">update</property>
+    <property name="demo.hbm2ddl.auto">create-drop</property>
 
     <property name="demo.current_session_context_class">thread</property>
 

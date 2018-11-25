@@ -7,16 +7,16 @@
   <style>
 
 body {
-    background-color: #000000;
+  background-color: #000000;
 }
 
 th {
-background-color: #FFCA4F;
-color: black;
+  background-color: #FFCA4F;
+  color: black;
 }
 
 td {
-  font-size: 24px;
+  font-size: 30px;
   text-align:center;
 }
 
@@ -53,9 +53,12 @@ table{
       <td th:utext="${student.id}">...</td>
       <td th:utext="${student.name}">...</td>
       <td th:utext="${student.age}">...</td>
-      <td th:utext="${student.subjects}">...</td>
-
-
+      <td>
+        <span th:each="subject : ${student.subjects}">
+          <div th:text="${subject.nameSubject} + '  ' ">
+          </div>
+        </span>
+      </td>
     </tr>
   </table>
 </div>

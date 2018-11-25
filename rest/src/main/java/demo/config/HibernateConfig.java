@@ -1,6 +1,7 @@
 package demo.config;
 
 import demo.model.Student;
+import demo.model.Subject;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -27,6 +28,7 @@ public class HibernateConfig {
     factoryBean.setConfigLocation(context
         .getResource("classpath:hibernate.cfg.xml"));
     factoryBean.setAnnotatedClasses(Student.class);
+    factoryBean.setAnnotatedClasses(Subject.class);
     return factoryBean;
   }
 

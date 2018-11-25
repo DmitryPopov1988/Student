@@ -1,34 +1,31 @@
 package demo.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 @Entity
+@JsonIdentityInfo(
+    generator = ObjectIdGenerators.PropertyGenerator.class,
+    property = "id")
 public final class Student {
 
   @Id
   @GeneratedValue
-  @Column(name = "student_id")
   private long id;
   private String name;
   private int age;
-  @OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+  @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER)
   private List<Subject> subjects;
 
   public Student() { }
 
   public Student(final String name, final int age) {
-    this.name = name;
-    this.age = age;
-  }
-
-  public Student(final long id, final String name, final int age) {
-    this.id = id;
     this.name = name;
     this.age = age;
   }
@@ -61,8 +58,8 @@ public final class Student {
     return subjects;
   }
 
-  public void setSubjects(final List<Subject> subjects) {
-    this.subjects = subjects;
+  public void setSubjects(final List<Subject> subjectList) {
+    this.subjects = subjectList;
   }
 
 }
