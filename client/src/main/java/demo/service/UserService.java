@@ -21,6 +21,7 @@ public class UserService {
             new ParameterizedTypeReference<List<Student>>() {
         });
     List<Student> students = entity.getBody();
+    System.out.println(restTemplate.getOAuth2ClientContext().getAccessToken());
     return students;
   }
 

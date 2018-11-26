@@ -32,7 +32,13 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
         .authenticated()
         .and()
         .formLogin()
-        .permitAll();
+        .permitAll()
+        .and()
+        .logout()
+        .logoutUrl("/exit")
+        .clearAuthentication(true)
+        .invalidateHttpSession(true);
+
   }
 
   @Override

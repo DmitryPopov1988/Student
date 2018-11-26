@@ -4,7 +4,7 @@ server:
     context-path: /
   session:
     cookie:
-      name: UI2SESSION
+      name: JSESSIONID
 security:
   basic:
     enabled: true
