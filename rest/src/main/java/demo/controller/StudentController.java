@@ -2,7 +2,10 @@ package demo.controller;
 
 import demo.model.Student;
 import demo.service.StudentService;
+import java.util.Enumeration;
 import java.util.List;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +26,26 @@ public final class StudentController {
   private StudentService studentService;
 
   @GetMapping("/")
-  ResponseEntity<List<Student>> list() {
+  ResponseEntity<List<Student>> list(HttpServletRequest request) {
+    Enumeration headerNames = request.getHeaderNames();
+    while (headerNames.hasMoreElements()) {
+      String key = (String) headerNames.nextElement();
+      String value = request.getHeader(key);
+      System.out.println(key + "  " + value);
+    }
+
+    Cookie[] cookie = request.getCookies();
+    System.out.println("Cookie");
+    if (cookie != null) {
+      for (Cookie cookie1 : cookie) {
+
+        System.out.println(cookie1.getName() + " " + cookie1.getValue());
+      }
+    }
+
+
+
+
     List<Student> students = studentService.getAll();
     if (students.size() > 1) {
       return new ResponseEntity<>(students, HttpStatus.OK);
