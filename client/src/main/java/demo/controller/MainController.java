@@ -1,15 +1,12 @@
 package demo.controller;
 
-import static java.util.Arrays.asList;
-
+import demo.model.Student;
 import demo.service.UserService;
-import java.lang.reflect.Array;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
-import java.util.stream.Stream;
-import javax.servlet.http.Cookie;
+import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -34,7 +31,11 @@ public class MainController {
   public String user(final Model model, final Principal principal,
       HttpServletRequest request, HttpSession httpSession,
       HttpServletResponse response) {
-    model.addAttribute("students", userService.getAll());
+    List<Student> students = userService.getAll();
+    List<Student> sortedList = students.stream().filter(student -> student.getName()
+        .equals(principal.getName())).collect(
+        Collectors.toList());
+    model.addAttribute("students", sortedList);
     model.addAttribute("principal", principal.getName());
     Enumeration headerNames = request.getHeaderNames();
     while (headerNames.hasMoreElements()) {
@@ -43,8 +44,7 @@ public class MainController {
       System.out.println(key + "  " + value);
     }
     strings.stream().forEach(s -> System.out.println(s));
-    Cookie cookie = new Cookie("helloworld", "lalalala");
-    response.addCookie(cookie);
+    System.out.println(httpSession.getCreationTime());
     return "main";
   }
 

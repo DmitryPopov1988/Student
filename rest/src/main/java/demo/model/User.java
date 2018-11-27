@@ -2,9 +2,12 @@ package demo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +22,9 @@ public final class User {
   @Column(name = "authority")
   private String role;
   private boolean enabled = true;
+  @OneToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "user_id")
+  private Student student;
 
   public User() { }
 
@@ -69,4 +75,11 @@ public final class User {
     this.enabled = enabled;
   }
 
+  public Student getStudent() {
+    return student;
+  }
+
+  public void setStudent(Student student) {
+    this.student = student;
+  }
 }

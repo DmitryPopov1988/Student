@@ -27,24 +27,13 @@ public final class StudentController {
 
   @GetMapping("/")
   ResponseEntity<List<Student>> list(HttpServletRequest request) {
+
     Enumeration headerNames = request.getHeaderNames();
     while (headerNames.hasMoreElements()) {
       String key = (String) headerNames.nextElement();
       String value = request.getHeader(key);
       System.out.println(key + "  " + value);
     }
-
-    Cookie[] cookie = request.getCookies();
-    System.out.println("Cookie");
-    if (cookie != null) {
-      for (Cookie cookie1 : cookie) {
-
-        System.out.println(cookie1.getName() + " " + cookie1.getValue());
-      }
-    }
-
-
-
 
     List<Student> students = studentService.getAll();
     if (students.size() > 1) {

@@ -3,11 +3,13 @@ package demo.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 @JsonIdentityInfo(
@@ -22,6 +24,8 @@ public final class Student {
   private int age;
   @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER)
   private List<Subject> subjects;
+  @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  private User user;
 
   public Student() { }
 
@@ -62,4 +66,11 @@ public final class Student {
     this.subjects = subjectList;
   }
 
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(final User user) {
+    this.user = user;
+  }
 }

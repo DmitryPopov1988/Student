@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS users (
 	username varchar(500) not null,
 	password varchar(500) not null,
 	authority varchar(500) not null,
-	enabled boolean not null
+	enabled boolean not null,
+	user_id BIGINT
 );
 
 CREATE TABLE IF NOT EXISTS student (

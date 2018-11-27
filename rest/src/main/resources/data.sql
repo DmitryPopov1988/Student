@@ -1,5 +1,5 @@
-insert into users values (1,'qq', 'qq', 'ADMIN', true);
-insert into users values (2,'Dmitry', 'aa', 'USER', true);
+insert into users values (1,'qq', 'qq', 'ADMIN', true, 2);
+insert into users values (2,'aa', 'aa', 'USER', true, 1);
 
 insert into student values (1,'Dmitry Popov', 29);
 insert into student values (2,'Vladimir Sharapov', 55);

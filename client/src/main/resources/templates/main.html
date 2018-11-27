@@ -72,11 +72,11 @@ table{
     <font color="#FFFFFF" size="+3">
       <h1>Welcome back, <span th:text="*{principal}"></span> !</h1>
     </font>
-  </div>
-  <form th:method="POST" th:action="@{'/logout'}" style="display:inline!important;">
-    <button class="logout" type="submit">Logout</button>
-  </form>
-</div>
+  <!--</div>-->
+  <!--<form th:method="POST" th:action="@{'/logout'}" style="display:inline!important;">-->
+    <!--<button class="logout" type="submit">Logout</button>-->
+  <!--</form>-->
+<!--</div>-->
 
 <div>
   <table cellpadding="1" border="6" width="30%">
@@ -85,6 +85,8 @@ table{
       <th width="100%"><font size="+3">NAME</font></th>
       <th width="100%"><font size="+3">AGE</font></th>
       <th width="100%"><font size="+3">SUBJECTS</font></th>
+      <th width="100%"><font size="+3">EDIT</font></th>
+      <th width="100%"><font size="+3">DELETE</font></th>
     </tr>
     <tr th:each="student : ${students}">
       <td th:utext="${student.id}">...</td>
@@ -96,6 +98,17 @@ table{
           </div>
         </span>
       </td>
+      <!--<td align="center">-->
+        <!--<form th:method="POST" th:action="@{'/vendors/delete/{id}'(id=${vendor.id})}"-->
+              <!--th:object="${product}">-->
+          <!--<button class="link" type="submit">DELETE</button>-->
+        <!--</form>-->
+      <!--</td>-->
+      <!--<td align="center">-->
+        <!--<form th:action="@{'/vendors/edit/{id}'(id=${vendor.id})}">-->
+          <!--<button class="link-button">EDIT</button>-->
+        <!--</form>-->
+      <!--</td>-->
     </tr>
   </table>
 </div>
