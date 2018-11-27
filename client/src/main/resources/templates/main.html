@@ -15,7 +15,7 @@ body {
   right: 2%;
   margin-top: 4%;
   vertical-align: top;
-  width: 14%;
+  width: 10%;
   height: 60px;
   padding: 0;
   font-size: 30px;
@@ -70,22 +70,22 @@ table{
 <div class="outer">
   <div class="inner">
     <font color="#FFFFFF" size="+3">
-      <h1>Welcome back, <span th:text="*{principal}"></span> !</h1>
+      <h1>Welcome, <span th:text="*{principal}"></span> !</h1>
     </font>
-  <!--</div>-->
-  <!--<form th:method="POST" th:action="@{'/logout'}" style="display:inline!important;">-->
-    <!--<button class="logout" type="submit">Logout</button>-->
-  <!--</form>-->
-<!--</div>-->
+  </div>
+  <form th:method="POST" th:action="@{'/logout'}" style="display:inline!important;">
+    <button class="logout" type="submit">Logout</button>
+  </form>
+</div>
 
 <div>
   <table cellpadding="1" border="6" width="30%">
     <tr>
-      <th width="100%"><font size="+3">ID</font></th>
+      <th width="30%"><font size="+3">ID</font></th>
       <th width="100%"><font size="+3">NAME</font></th>
-      <th width="100%"><font size="+3">AGE</font></th>
-      <th width="100%"><font size="+3">GROUP</font></th>
-      <th width="100%"><font size="+3">FACULTY</font></th>
+      <th width="50%"><font size="+3">AGE</font></th>
+      <th width="50%"><font size="+3">GROUP</font></th>
+      <th width="50%"><font size="+3">FACULTY</font></th>
       <th width="100%"><font size="+3">SUBJECTS</font></th>
     </tr>
     <tr th:each="student : ${students}">

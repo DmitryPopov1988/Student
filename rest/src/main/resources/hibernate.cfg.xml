@@ -5,37 +5,37 @@
 <hibernate-configuration>
   <session-factory>
 
-    <property name="demo.connection.driver_class">org.h2.Driver</property>
+    <property name="rest.connection.driver_class">org.h2.Driver</property>
 
-    <property name="demo.connection.password"></property>
+    <property name="rest.connection.password"></property>
 
-    <property name="demo.connection.url">jdbc:h2:~/test</property>
+    <property name="rest.connection.url">jdbc:h2:~/test</property>
 
-    <property name="demo.connection.username">sa</property>
+    <property name="rest.connection.username">sa</property>
 
-    <property name="demo.dialect">org.demo.dialect.H2Dialect</property>
+    <property name="rest.dialect">org.rest.dialect.H2Dialect</property>
 
-    <property name="demo.hbm2ddl.auto">create-drop</property>
+    <property name="rest.hbm2ddl.auto">create-drop</property>
 
-    <property name="demo.current_session_context_class">thread</property>
+    <property name="rest.current_session_context_class">thread</property>
 
-    <property name="demo.show_sql">true</property>
+    <property name="rest.show_sql">true</property>
 
-    <property name="demo.c3p0.min_size">5</property>
+    <property name="rest.c3p0.min_size">5</property>
 
-    <property name="demo.c3p0.max_size">20</property>
+    <property name="rest.c3p0.max_size">20</property>
 
-    <property name="demo.c3p0.acquire_increment">2</property>
+    <property name="rest.c3p0.acquire_increment">2</property>
 
-    <property name="demo.c3p0.acquire_increment">1800</property>
+    <property name="rest.c3p0.acquire_increment">1800</property>
 
-    <property name="demo.c3p0.max_statements">150</property>
+    <property name="rest.c3p0.max_statements">150</property>
 
-    <mapping class="demo.model.Student"/>
+    <mapping class="rest.model.Student"/>
 
-    <mapping class="demo.model.Subject"/>
+    <mapping class="rest.model.Subject"/>
 
-    <mapping class="demo.model.User"/>
+    <mapping class="rest.model.User"/>
 
   </session-factory>
 
