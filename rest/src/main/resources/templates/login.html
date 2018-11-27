@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="icon" type="image/png" href="https://spring.io/favicon.ico">
+  <title>Please sign in</title>
+  <style>
+
+body {
+  background-color: #000000;
+  height: 100%;
+}
+
+.form-control {
+    width: 21%;
+    font-size:25px;
+    height:44px;
+    font-family: "Times New Roman", Times, serif;
+}
+
+.signin {
+  position: relative;
+  vertical-align: top;
+  width: 21%;
+  height: 60px;
+  margin: 30px;
+  font-size: 30px;
+  font-family: "Times New Roman", Times, serif;
+  color: white;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #FFCA4F;
+  border: 0;
+  border-bottom: 2px solid #e8930c;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #e8930c;
+  box-shadow: inset 0 -2px #e8930c;
+}
+
+.signin:active {
+  top: 6px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+  </style>
+</head>
+<body>
+<div class="container">
+  <form name="f" method="post" th:action="@{/login}" style="text-align:center;">
+    <font color="#FFFFFF" size="+5">
+    <h2>Please sign in</h2>
+    </font>
+    <div th:if="${param.error}" class="alert alert-error" style="color:white;font-style:Times New Roman;text-align:center;font-size:30px;">
+      Invalid username or password.
+    </div>
+    <br />
+    <input type="text" id="username" name="username" class="form-control" placeholder="USERNAME" required autofocus>
+    </p>
+    <p>
+      <input type="password" id="password" name="password" class="form-control" placeholder="PASSWORD" required>
+    </p>
+    <input name="_csrf" type="hidden" value="${_csfr.token}" />
+    <button class="signin" type="submit">SIGN IN</button>
+  </form>
+</div>
+</body></html>

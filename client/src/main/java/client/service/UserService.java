@@ -3,6 +3,7 @@ package client.service;
 import client.model.Student;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +15,12 @@ public class UserService {
 
   @Autowired
   private OAuth2RestOperations restTemplate;
+  @Value("${authorization}/students/")
+  private String studentsUrl;
 
   public List<Student> getAll() {
     ResponseEntity<List<Student>> entity = restTemplate
-        .exchange("http://localhost:8090/auth/students/", HttpMethod.GET, null,
+        .exchange(studentsUrl, HttpMethod.GET, null,
             new ParameterizedTypeReference<List<Student>>() {
         });
     List<Student> students = entity.getBody();

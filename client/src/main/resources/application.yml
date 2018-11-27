@@ -19,3 +19,4 @@ security:
 spring:
   thymeleaf:
     cache: false
+authorization: http://localhost:8090/auth
