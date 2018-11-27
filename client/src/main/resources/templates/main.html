@@ -84,14 +84,16 @@ table{
       <th width="100%"><font size="+3">ID</font></th>
       <th width="100%"><font size="+3">NAME</font></th>
       <th width="100%"><font size="+3">AGE</font></th>
+      <th width="100%"><font size="+3">GROUP</font></th>
+      <th width="100%"><font size="+3">FACULTY</font></th>
       <th width="100%"><font size="+3">SUBJECTS</font></th>
-      <th width="100%"><font size="+3">EDIT</font></th>
-      <th width="100%"><font size="+3">DELETE</font></th>
     </tr>
     <tr th:each="student : ${students}">
       <td th:utext="${student.id}">...</td>
       <td th:utext="${student.name}">...</td>
       <td th:utext="${student.age}">...</td>
+      <td th:utext="${student.group}">...</td>
+      <td th:utext="${student.faculty}">...</td>
       <td>
         <span th:each="subject : ${student.subjects}">
           <div th:text="${subject.nameSubject} + '  ' ">

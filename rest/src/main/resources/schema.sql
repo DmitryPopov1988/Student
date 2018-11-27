@@ -16,6 +16,8 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS student (
   id BIGINT not null PRIMARY KEY,
 	name varchar(500) not null,
+	student_group INT not null,
+	faculty varchar(500) not null,
 	age BIGINT not null
 );
 

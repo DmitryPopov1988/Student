@@ -6,6 +6,8 @@ public class Student {
 
   private long id;
   private String name;
+  private short group;
+  private String faculty;
   private int age;
   private List<Object> subjects;
 
@@ -31,6 +33,22 @@ public class Student {
 
   public void setName(final String name) {
     this.name = name;
+  }
+
+  public short getGroup() {
+    return group;
+  }
+
+  public void setGroup(final short group) {
+    this.group = group;
+  }
+
+  public String getFaculty() {
+    return faculty;
+  }
+
+  public void setFaculty(final String faculty) {
+    this.faculty = faculty;
   }
 
   public int getAge() {

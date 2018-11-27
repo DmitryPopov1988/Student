@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.List;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,9 @@ public final class Student {
   @GeneratedValue
   private long id;
   private String name;
+  @Column(name = "student_group")
+  private short group;
+  private String faculty;
   private int age;
   @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER)
   private List<Subject> subjects;
@@ -28,11 +32,6 @@ public final class Student {
   private User user;
 
   public Student() { }
-
-  public Student(final String name, final int age) {
-    this.name = name;
-    this.age = age;
-  }
 
   public long getId() {
     return id;
@@ -56,6 +55,22 @@ public final class Student {
 
   public void setAge(final int age) {
     this.age = age;
+  }
+
+  public short getGroup() {
+    return group;
+  }
+
+  public void setGroup(final short group) {
+    this.group = group;
+  }
+
+  public String getFaculty() {
+    return faculty;
+  }
+
+  public void setFaculty(final String faculty) {
+    this.faculty = faculty;
   }
 
   public List<Subject> getSubjects() {
