@@ -3,9 +3,6 @@ package client.controller;
 import client.service.UserService;
 import client.model.Student;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,12 +30,13 @@ public class MainController {
     model.addAttribute("students", sortedList);
     model.addAttribute("principal", principal.getName());
     Student student = sortedList.get(0);
+
     model.addAttribute("image", student.generateBase64Image());
     return "main";
   }
 
   @PostMapping("/upload")
-  public String handleFileUpload(@RequestParam("file") MultipartFile file,
+  public String handleFileUpload(@RequestParam("file") final MultipartFile file,
       final Principal principal) throws IOException {
     byte[] bytes = file.getBytes();
     List<Student> students = userService.getAll();
