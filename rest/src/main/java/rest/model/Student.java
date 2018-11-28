@@ -3,28 +3,36 @@ package rest.model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import java.util.List;
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 @Entity
 @JsonIdentityInfo(
     generator = ObjectIdGenerators.PropertyGenerator.class,
-    property = "id")
+    property = "id", scope = Student.class)
 public final class Student {
 
   @Id
   @GeneratedValue
   private long id;
+  @Column(name = "first_name")
   private String name;
+  @Column(name = "last_name")
+  private String lastName;
   @Column(name = "student_group")
   private short group;
   private String faculty;
   private int age;
+  @Lob
+  @Basic(optional = false)
+  private byte[] image;
   @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER)
   private List<Subject> subjects;
   @OneToOne(mappedBy = "student", fetch = FetchType.EAGER)
@@ -48,12 +56,28 @@ public final class Student {
     this.name = name;
   }
 
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(final String lastName) {
+    this.lastName = lastName;
+  }
+
   public int getAge() {
     return age;
   }
 
   public void setAge(final int age) {
     this.age = age;
+  }
+
+  public byte[] getImage() {
+    return image;
+  }
+
+  public void setImage(final byte[] image) {
+    this.image = image;
   }
 
   public short getGroup() {

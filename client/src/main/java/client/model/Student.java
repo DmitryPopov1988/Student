@@ -6,9 +6,11 @@ public final class Student {
 
   private long id;
   private String name;
+  private String lastName;
   private short group;
   private String faculty;
   private int age;
+  private byte[] image;
   private List<Object> subjects;
 
   public Student() { }
@@ -35,6 +37,14 @@ public final class Student {
     this.name = name;
   }
 
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(final String lastName) {
+    this.lastName = lastName;
+  }
+
   public short getGroup() {
     return group;
   }
@@ -57,6 +67,14 @@ public final class Student {
 
   public void setAge(final int age) {
     this.age = age;
+  }
+
+  public byte[] getImage() {
+    return image;
+  }
+
+  public void setImage(final byte[] image) {
+    this.image = image;
   }
 
   public List<Object> getSubjects() {

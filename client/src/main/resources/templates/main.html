@@ -114,5 +114,33 @@ table{
     </tr>
   </table>
 </div>
+<br /><br />
+
+<div th:if="${message}">
+  <h2 th:text="${message}"/>
+</div>
+
+<br /><br />
+
+<div>
+  <form th:action="@{'/upload'}" method="POST" enctype="multipart/form-data">
+    <table>
+      <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+      <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+    </table>
+  </form>
+</div>
+<br /><br />
+<div>
+  <ul>
+    <li th:each="file : ${files}">
+      <a th:href="${file}" th:text="${file}" />
+    </li>
+  </ul>
+</div>
+
+
+
+
 </body>
 </html>

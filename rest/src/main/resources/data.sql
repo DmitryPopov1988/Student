@@ -1,8 +1,8 @@
 insert into users values (1,'qq', 'qq', 'ADMIN', true, 2);
 insert into users values (2,'aa', 'aa', 'USER', true, 1);
 
-insert into student values (1,'Dmitry Popov', 554, 'ASOI', 29);
-insert into student values (2,'Vladimir Sharapov', 777, 'AI', 55);
+insert into student values (1,'Bart', 'Simpson', 554, 'ASOI', 29, null);
+insert into student values (2,'Nelson', 'Muntz', 777, 'AI', 55, null);
 
 insert into subject values (1,'Math');
 insert into subject values (2,'Chemistry');

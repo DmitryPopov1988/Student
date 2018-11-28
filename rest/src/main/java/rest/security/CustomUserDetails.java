@@ -23,7 +23,8 @@ public class CustomUserDetails implements UserDetailsService {
       User user = userDao.getUserByName(username);
       UserBuilder builder = null;
       builder = org.springframework.security.core
-          .userdetails.User.withUsername(user.getStudent().getName());
+          .userdetails.User.withUsername(user.getStudent()
+              .getName() + " " + user.getStudent().getLastName());
       builder.password(new BCryptPasswordEncoder()
           .encode(user.getPassword()));
       builder.roles(user.getRole());
