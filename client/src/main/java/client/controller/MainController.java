@@ -22,7 +22,6 @@ public class MainController {
 
   @Autowired
   private UserService userService;
-  private String UPLOAD = "/home/dmitry/IdeaProjects/hibernate/client/src/main/upload/";
 
   @GetMapping("/main")
   public String user(final Model model, final Principal principal) {
@@ -33,6 +32,8 @@ public class MainController {
         Collectors.toList());
     model.addAttribute("students", sortedList);
     model.addAttribute("principal", principal.getName());
+    Student student = sortedList.get(0);
+    model.addAttribute("image", student.generateBase64Image());
     return "main";
   }
 
@@ -48,9 +49,7 @@ public class MainController {
             Collectors.toList());
     Student student = sortedList.get(0);
     student.setImage(bytes);
-    System.out.println(student.getName());
     userService.updateStudent(student);
-
     return "redirect:/main";
   }
 

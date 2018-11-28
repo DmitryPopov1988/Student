@@ -1,6 +1,7 @@
 package client.model;
 
 import java.util.List;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 public final class Student {
 
@@ -83,5 +84,9 @@ public final class Student {
 
   public void setSubjects(final List<Object> subjects) {
     this.subjects = subjects;
+  }
+
+  public String generateBase64Image() {
+    return Base64.encodeBase64String(this.getImage());
   }
 }
