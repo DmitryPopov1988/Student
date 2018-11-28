@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.client.OAuth2RestOperations;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public final class UserService {
 
   @Autowired
   private OAuth2RestOperations restTemplate;

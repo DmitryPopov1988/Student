@@ -31,7 +31,7 @@ public final class Student {
   private String faculty;
   private int age;
   @Lob
-  @Basic(optional = false)
+  @Basic(optional = false, fetch = FetchType.LAZY)
   private byte[] image;
   @ManyToMany(mappedBy = "students", fetch = FetchType.EAGER)
   private List<Subject> subjects;

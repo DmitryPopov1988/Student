@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 @Controller
-public class MainController {
+public final class MainController {
 
   @Autowired
   private UserService userService;
+  private static String studentName;
+  private static String studentLastName;
 
   @GetMapping("/main")
   public String user(final Model model, final Principal principal) {
@@ -27,10 +29,11 @@ public class MainController {
         .filter(student -> student.getName()
         .equals(principal.getName().replaceAll(" .*", ""))).collect(
         Collectors.toList());
-    model.addAttribute("students", sortedList);
-    model.addAttribute("principal", principal.getName());
     Student student = sortedList.get(0);
-
+    studentName = student.getName();
+    studentLastName = studentLastName;
+    model.addAttribute("students", sortedList);
+    model.addAttribute("principal", studentName);
     model.addAttribute("image", student.generateBase64Image());
     return "main";
   }

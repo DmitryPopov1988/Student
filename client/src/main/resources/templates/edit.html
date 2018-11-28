@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <link rel="icon" type="image/png" href="https://spring.io/favicon.ico">
+  <title>Edit</title>
+</head>
+<body>
+
+<div>
+  <table cellpadding="1" border="6" width="30%">
+    <tr>
+      <th width="30%"><font size="+3">ID</font></th>
+      <th width="100%"><font size="+3">NAME</font></th>
+      <th width="50%"><font size="+3">AGE</font></th>
+      <th width="50%"><font size="+3">GROUP</font></th>
+      <th width="50%"><font size="+3">FACULTY</font></th>
+      <th width="100%"><font size="+3">SUBJECTS</font></th>
+    </tr>
+    <tr th:each="student : ${students}">
+      <td th:utext="${student.id}">...</td>
+      <td th:utext="${student.name}">...</td>
+      <td th:utext="${student.age}">...</td>
+      <td th:utext="${student.group}">...</td>
+      <td th:utext="${student.faculty}">...</td>
+      <td>
+        <span th:each="subject : ${student.subjects}">
+          <div th:text="${subject.nameSubject} + '  ' ">
+          </div>
+        </span>
+      </td>
+      <!--<td align="center">-->
+      <form th:method="POST" th:action="@{'/vendors/delete/{id}'(id=${vendor.id})}" th:object="${product}">
+      <button class="link" type="submit">DELETE</button>
+      </form>
+      <!--</td>-->
+      <!--<td align="center">-->
+      <!--<form th:action="@{'/vendors/edit/{id}'(id=${vendor.id})}">-->
+      <!--<button class="link-button">EDIT</button>-->
+      <!--</form>-->
+      <!--</td>-->
+    </tr>
+  </table>
+</div>
+
+</body>
+</html>

@@ -80,9 +80,25 @@ div img {
   border-radius: 0px;
   padding: 0px;
   overflow: hidden;
-  <!--border: 7px ridge #808080;-->
 }
 
+.file_upload {
+  margin: 2%;
+  padding: 8px;
+  font-size: 21px;
+  font-family: "Times New Roman", Times, serif;
+  border: 7px solid white;
+  border-color:#FFCA4F;
+  background-color:#FFCA4F;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  color: black;
+  background: #FFCA4F;
+  margin-top: -4%;
+}
+
+input[type='file']::-webkit-file-upload-button {
+  background-color:#FFCA4F;
+}
 
   </style>
 </head>
@@ -104,65 +120,12 @@ div img {
 <br /><br />
 
 <div>
-  <table cellpadding="1" border="6" width="30%">
-    <tr>
-      <th width="30%"><font size="+3">ID</font></th>
-      <th width="100%"><font size="+3">NAME</font></th>
-      <th width="50%"><font size="+3">AGE</font></th>
-      <th width="50%"><font size="+3">GROUP</font></th>
-      <th width="50%"><font size="+3">FACULTY</font></th>
-      <th width="100%"><font size="+3">SUBJECTS</font></th>
-    </tr>
-    <tr th:each="student : ${students}">
-      <td th:utext="${student.id}">...</td>
-      <td th:utext="${student.name}">...</td>
-      <td th:utext="${student.age}">...</td>
-      <td th:utext="${student.group}">...</td>
-      <td th:utext="${student.faculty}">...</td>
-      <td>
-        <span th:each="subject : ${student.subjects}">
-          <div th:text="${subject.nameSubject} + '  ' ">
-          </div>
-        </span>
-      </td>
-      <!--<td align="center">-->
-        <!--<form th:method="POST" th:action="@{'/vendors/delete/{id}'(id=${vendor.id})}"-->
-              <!--th:object="${product}">-->
-          <!--<button class="link" type="submit">DELETE</button>-->
-        <!--</form>-->
-      <!--</td>-->
-      <!--<td align="center">-->
-        <!--<form th:action="@{'/vendors/edit/{id}'(id=${vendor.id})}">-->
-          <!--<button class="link-button">EDIT</button>-->
-        <!--</form>-->
-      <!--</td>-->
-    </tr>
-  </table>
-</div>
-<br /><br />
-
-<div th:if="${message}">
-  <h2 th:text="${message}"/>
-</div>
-
-<br /><br />
-
-<div>
   <form th:action="@{'/upload'}" method="POST" enctype="multipart/form-data">
-    <table>
-      <tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
-      <tr><td></td><td><input type="submit" value="Upload" /></td></tr>
-    </table>
+<input type="file" name="file" class="file_upload"/>
+<input type="submit" value="Upload" />
   </form>
 </div>
-<br /><br />
-<div>
-  <ul>
-    <li th:each="file : ${files}">
-      <a th:href="${file}" th:text="${file}" />
-    </li>
-  </ul>
-</div>
+
 
 </body>
 </html>
