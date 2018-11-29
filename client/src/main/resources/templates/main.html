@@ -3,7 +3,7 @@
 <head>
   <link rel="icon" type="image/png" href="https://spring.io/favicon.ico">
   <meta charset="UTF-8"/>
-  <title>Welcome back</title>
+  <title>Welcome</title>
   <style>
 
 body {
@@ -84,7 +84,7 @@ div img {
 
 .file_upload {
   margin: 2%;
-  padding: 9px;
+  padding: 10px;
   font-size: 21px;
   font-family: "Times New Roman", Times, serif;
   border: 7px solid white;
@@ -98,6 +98,32 @@ div img {
 
 input[type='file']::-webkit-file-upload-button {
   background-color:#FFCA4F;
+}
+
+.up {
+  position: relative;
+  vertical-align: top;
+  width: 390px;
+  height: 64px;
+  margin: -16px 90px 10px 25px;
+  font-size: 30px;
+  font-family: "Times New Roman", Times, serif;
+  color: black;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+  background: #FFCA4F;
+  border: 0;
+  border-bottom: 2px solid #e8930c;
+  cursor: pointer;
+  -webkit-box-shadow: inset 0 -2px #e8930c;
+  box-shadow: inset 0 -2px #e8930c;
+}
+
+.up:active {
+  top: 6px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
   </style>
@@ -123,7 +149,7 @@ input[type='file']::-webkit-file-upload-button {
   <form th:action="@{'/upload'}" method="POST" enctype="multipart/form-data">
 <input type="file" name="file" class="file_upload"/>
     <br/>
-    <button type="submit" class="upload-bitton">Upload</button>
+    <button type="submit" class="up">Upload</button>
   </form>
 </div>
 
